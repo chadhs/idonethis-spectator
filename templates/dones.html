@@ -1,0 +1,22 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<title>What {{ user }} is getting done for team {{ team }}.  :-)</title>
+	<link rel="stylesheet" href="/static/style.css" type="text/css">
+</head>
+<body>
+	<h1>What {{ user }} is getting done for team {{ team }}.  :-)
+	<h2>today's dones:</h2>
+	<ul>
+		{% for done in results_today %}
+			<li>{{ done }}</li>
+		{% endfor %}
+	</ul>
+	<h2>last week's dones:</h2>
+	<ul>
+		{% for done in results_week %}
+			<li>{{ done }}</li>
+		{% endfor %}
+	</ul>
+</body>
+</html>
