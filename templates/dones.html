@@ -20,7 +20,12 @@
 	<h2>last week's dones:</h2>
 	<ul>
 		{% for done in results_week %}
-			<li>{{ done.0|safe }}</li>
+			<li>
+				{% if done.1 == False %}
+					<strong><em>incomplete goal: </em></strong>
+				{% endif %}
+				{{ done.0|safe }}
+			</li>
 		{% endfor %}
 	</ul>
 </body>

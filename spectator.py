@@ -4,12 +4,13 @@ from flask import Flask
 from flask import render_template
 import requests
 import datetime
+import config
 
 
 ## configuration
-token = ""
-team = ""
-user = ""
+token = config.token
+team = config.team
+user = config.user
 idturl= "https://idonethis.com"
 
 
@@ -17,6 +18,7 @@ idturl= "https://idonethis.com"
 app = Flask(__name__)
 
 
+## helpers
 def get_json_data(url):
     headers = {'content-type': 'application/json', 'authorization': 'token %s' % (token)}
     r = requests.get(url, headers=headers)
@@ -25,14 +27,8 @@ def get_json_data(url):
     return dones
 
 
+## urls
 @app.route("/")
-def hello():
-    return "Hello there."
-
-
-## TODO
-# - load variables from config file
-@app.route("/dones")
 def display_dones():
     startdate = datetime.date.today() - datetime.timedelta(1)
     enddate = datetime.date.today() - datetime.timedelta(7)
@@ -60,5 +56,6 @@ def display_dones():
     return render_template('dones.html', team=team, user=user, results_today=dones_today_text, results_week=dones_lastweek_text)
 
 
+## run app
 if __name__ == "__main__":
     app.run(debug=True)
