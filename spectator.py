@@ -18,7 +18,7 @@ api_dones_url = idturl + '/api/v0.1/dones/?'
 app = Flask(__name__)
 
 
-## helpers
+### helpers
 def get_json_data(url):
     """
     fetch dones from the iDoneThis api, return list of dones from the json response
@@ -39,7 +39,7 @@ def fix_rel_url(dones):
     return dones
 
 
-## urls
+### urls
 @app.route("/")
 def display_dones():
     startdate = datetime.date.today() - datetime.timedelta(1)
