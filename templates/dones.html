@@ -8,23 +8,23 @@
 	<h1>What {{ user }} is getting done for team {{ team }}.  :-)
 	<h2>today's dones:</h2>
 	<ul>
-		{% for done in results_today %}
+		{% for done in dones_today %}
 			<li>
-				{% if done.1 == False %}
+				{% if done['goal_completed'] == False %}
 					<strong><em>incomplete goal: </em></strong>
 				{% endif %}
-				{{ done.0|safe }}
+				{{ done['markedup_text']|safe }}
 			</li>
 		{% endfor %}
 	</ul>
 	<h2>last week's dones:</h2>
 	<ul>
-		{% for done in results_week %}
+		{% for done in dones_lastweek %}
 			<li>
-				{% if done.1 == False %}
+				{% if done['goal_completed'] == False %}
 					<strong><em>incomplete goal: </em></strong>
 				{% endif %}
-				{{ done.0|safe }}
+				{{ done['markedup_text']|safe }}
 			</li>
 		{% endfor %}
 	</ul>

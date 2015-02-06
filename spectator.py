@@ -35,25 +35,17 @@ def display_dones():
 
     url_today = "https://idonethis.com/api/v0.1/dones/?done_date=today&owner=%s&team=%s&page_size=100" % (user, team)
     dones_today = get_json_data(url_today)
-    dones_today_text = []
-    for d in dones_today:
-        done = d['markedup_text']
-        goal = d['goal_completed']
-        done = done.replace("/hashtags","%s/hashtags" % (idturl), 1)
-        done = done.replace("/cal","%s/cal" % (idturl), 1)
-        dones_today_text.append((done,goal))
+    for done in dones_today:
+        done['markedup_text'] = done['markedup_text'].replace("/hashtags","%s/hashtags" % (idturl))
+        done['markedup_text'] = done['markedup_text'].replace("/cal","%s/cal" % (idturl))
 
     url_lastweek = "https://idonethis.com/api/v0.1/dones/?done_date_after=%s&done_date_before=%s&owner=%s&team=%s&page_size=100" % (enddate, startdate, user, team)
     dones_lastweek = get_json_data(url_lastweek)
-    dones_lastweek_text = []
-    for d in dones_lastweek:
-        done = d['markedup_text']
-        goal = d['goal_completed']
-        done = done.replace("/hashtags","%s/hashtags" % (idturl), 1)
-        done = done.replace("/cal","%s/cal" % (idturl), 1)
-        dones_lastweek_text.append((done,goal))
+    for done in dones_lastweek:
+        done['markedup_text'] = done['markedup_text'].replace("/hashtags","%s/hashtags" % (idturl))
+        done['markedup_text'] = done['markedup_text'].replace("/cal","%s/cal" % (idturl))
 
-    return render_template('dones.html', team=team, user=user, results_today=dones_today_text, results_week=dones_lastweek_text)
+    return render_template('dones.html', team=team, user=user, dones_today=dones_today, dones_lastweek=dones_lastweek)
 
 
 ## run app
