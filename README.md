@@ -1,6 +1,8 @@
 # idonethis-spectator
 Spectator mode for iDoneThis.
 
+## depracated; incompatible with iDoneThis 2.0
+
 This simple webapp will allow you to share what you've contributed to your iDoneThis team in the past day and past week with someone outside of your team.
 
 ## quick install instructions
